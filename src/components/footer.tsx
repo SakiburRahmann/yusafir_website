@@ -7,16 +7,22 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function Footer() {
   return (
-    <footer
-      id="contact"
-      className="relative overflow-hidden border-t border-line"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-      >
-        <div className="animate-pulse-soft absolute bottom-[-30%] left-1/2 h-[60vh] w-[90vw] -translate-x-1/2 rounded-full bg-gold/[0.08] blur-[150px]" />
+    <footer id="contact" className="relative overflow-hidden border-t border-line">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="animate-pulse-soft absolute bottom-[-30%] left-1/2 h-[60vh] w-[90vw] -translate-x-1/2 rounded-full bg-amber/[0.06] blur-[150px]" />
         <div className="hero-grid absolute inset-0 opacity-40" />
+        <svg
+          className="absolute top-1/2 left-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 opacity-[0.04]"
+          viewBox="0 0 400 400"
+          fill="none"
+          stroke="#e8e4d8"
+        >
+          <circle cx="200" cy="200" r="60" />
+          <circle cx="200" cy="200" r="130" strokeDasharray="6 8" />
+          <circle cx="200" cy="200" r="195" strokeDasharray="2 10" />
+          <line x1="200" y1="0" x2="200" y2="400" />
+          <line x1="0" y1="200" x2="400" y2="200" />
+        </svg>
       </div>
 
       <div className="relative mx-auto max-w-[1400px] px-6 pt-32 md:px-10 md:pt-48">
@@ -25,12 +31,12 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="mb-10 text-center font-sans text-[11px] tracking-[0.45em] text-gold uppercase"
+          className="mb-10 text-center font-mono text-[11px] tracking-[0.45em] text-amber uppercase"
         >
           [ 06 — Contact ]
         </motion.p>
 
-        <h2 className="text-center font-display text-[11.5vw] leading-[0.95] font-black tracking-[-0.02em] text-bone uppercase select-none md:text-[8vw]">
+        <h2 className="text-center font-display text-[12vw] leading-[0.9] tracking-[0.01em] uppercase select-none md:text-[9vw]">
           <span className="block overflow-hidden">
             <motion.span
               className="inline-block"
@@ -39,7 +45,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 1.1, ease: EASE }}
             >
-              Let’s make
+              Strength is
             </motion.span>
           </span>
           <span className="block overflow-hidden">
@@ -50,21 +56,18 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 1.1, ease: EASE, delay: 0.12 }}
             >
-              something
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden">
-            <motion.span
-              className="text-gradient-gold inline-block"
-              initial={{ y: "110%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.1, ease: EASE, delay: 0.24 }}
-            >
-              extraordinary.
+              precision
             </motion.span>
           </span>
         </h2>
+
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: EASE, delay: 0.3 }}
+          className="hazard-thin mx-auto mt-6 h-1.5 w-[min(80vw,560px)] rounded-sm opacity-80"
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -75,42 +78,42 @@ export default function Footer() {
         >
           <Magnetic strength={0.45}>
             <a
-              href="mailto:hello@halcyon.studio"
+              href="mailto:briefings@vanguard-def.com"
               data-hover
-              className="group inline-flex items-center gap-4 rounded-full bg-bone px-12 py-5 font-sans text-[12px] font-bold tracking-[0.25em] text-ink uppercase transition-colors duration-300 hover:bg-gold"
+              className="group inline-flex items-center gap-4 border-2 border-amber bg-amber px-12 py-5 font-mono text-[12px] font-bold tracking-[0.25em] text-ink uppercase transition-colors duration-300 hover:bg-transparent hover:text-amber"
             >
-              hello@halcyon.studio
+              Request a briefing
               <span className="inline-block transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                 ↗
               </span>
             </a>
           </Magnetic>
-          <p className="font-sans text-[10px] tracking-[0.35em] text-faint uppercase">
-            Replies within 24 hours — always a human
+          <p className="font-mono text-[10px] tracking-[0.35em] text-faint uppercase">
+            Classified correspondence handled via secure channel
           </p>
         </motion.div>
 
         <div className="mt-28 grid gap-10 border-t border-line py-12 md:grid-cols-4">
           <div>
-            <p className="font-display text-lg font-black tracking-tight text-bone uppercase">
-              Halcyon<span className="text-gold">®</span>
+            <p className="font-display text-3xl tracking-wide text-bone uppercase">
+              Vanguard<span className="text-amber">®</span>
             </p>
-            <p className="mt-3 font-sans text-[10px] leading-5 tracking-[0.25em] text-faint uppercase">
-              Creative Studio
+            <p className="mt-3 font-mono text-[10px] leading-5 tracking-[0.25em] text-faint uppercase">
+              Defense &amp; Tactical Systems
               <br />
-              Dhaka — London — NY
+              EST. 2009
             </p>
           </div>
           <div>
-            <p className="font-sans text-[10px] tracking-[0.35em] text-faint uppercase">
-              Studio
+            <p className="font-mono text-[10px] tracking-[0.35em] text-faint uppercase">
+              Command
             </p>
             <div className="mt-4 flex flex-col gap-2">
-              {["Work", "Services", "Manifesto", "Contact"].map((l) => (
+              {["Recon", "Platforms", "Capabilities", "Contact"].map((l) => (
                 <a
                   key={l}
-                  href={`#${l.toLowerCase()}`}
-                  className="w-fit font-sans text-[11px] font-medium tracking-[0.2em] text-mute uppercase transition-colors hover:text-gold"
+                  href={`#${l === "Recon" ? "work" : l === "Platforms" ? "work" : l.toLowerCase()}`}
+                  className="w-fit font-mono text-[11px] tracking-[0.2em] text-mute uppercase transition-colors hover:text-amber"
                 >
                   {l}
                 </a>
@@ -118,15 +121,15 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <p className="font-sans text-[10px] tracking-[0.35em] text-faint uppercase">
-              Social
+            <p className="font-mono text-[10px] tracking-[0.35em] text-faint uppercase">
+              Network
             </p>
             <div className="mt-4 flex flex-col gap-2">
-              {["Instagram", "Behance", "Dribbble", "LinkedIn"].map((s) => (
+              {["LinkedIn", "X / Twitter", "YouTube", "RSS Feed"].map((s) => (
                 <a
                   key={s}
                   href="#contact"
-                  className="w-fit font-sans text-[11px] font-medium tracking-[0.2em] text-mute uppercase transition-colors hover:text-gold"
+                  className="w-fit font-mono text-[11px] tracking-[0.2em] text-mute uppercase transition-colors hover:text-amber"
                 >
                   {s}
                 </a>
@@ -134,24 +137,31 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <p className="font-sans text-[10px] tracking-[0.35em] text-faint uppercase">
-              New business
+            <p className="font-mono text-[10px] tracking-[0.35em] text-faint uppercase">
+              HQ
             </p>
-            <a
-              href="mailto:hello@halcyon.studio"
-              className="mt-4 block font-sans text-[11px] font-medium tracking-[0.15em] text-mute transition-colors hover:text-gold"
-            >
-              hello@halcyon.studio
-            </a>
+            <p className="mt-4 font-mono text-[11px] leading-6 tracking-[0.15em] text-mute">
+              Sector 11, Dhaka 1213
+              <br />
+              Bangladesh
+              <br />
+              <a
+                href="mailto:briefings@vanguard-def.com"
+                className="transition-colors hover:text-amber"
+              >
+                briefings@vanguard-def.com
+              </a>
+            </p>
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-3 border-t border-line py-6 md:flex-row">
-          <p className="font-sans text-[10px] tracking-[0.2em] text-faint uppercase">
-            © 2026 Halcyon Studio — All rights reserved
+          <p className="font-mono text-[10px] tracking-[0.2em] text-faint uppercase">
+            © 2026 Vanguard Defense Systems — All rights reserved
           </p>
-          <p className="font-sans text-[10px] tracking-[0.2em] text-faint uppercase">
-            Shot on scroll · Edited in motion
+          <p className="font-mono text-[10px] tracking-[0.2em] text-faint uppercase">
+            <span className="animate-blink text-amber">●</span> SYSTEMS
+            OPERATIONAL — ALL SECTORS
           </p>
         </div>
       </div>

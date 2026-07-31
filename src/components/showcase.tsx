@@ -25,14 +25,21 @@ function ParallaxImage({
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.25, 1.05, 1.25]);
 
   return (
-    <div ref={ref} className={`relative overflow-hidden ${ratio} ${className}`}>
+    <div
+      ref={ref}
+      className={`scanlines relative overflow-hidden ${ratio} ${className}`}
+    >
       <motion.img
         src={src}
         alt={alt}
         style={{ y, scale }}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="military-img absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+      <div className="absolute top-4 left-4 size-5 border-t-2 border-l-2 border-amber/70" />
+      <div className="absolute top-4 right-4 size-5 border-t-2 border-r-2 border-amber/70" />
+      <div className="absolute bottom-4 left-4 size-5 border-b-2 border-l-2 border-amber/70" />
+      <div className="absolute right-4 bottom-4 size-5 border-r-2 border-b-2 border-amber/70" />
     </div>
   );
 }
@@ -48,26 +55,24 @@ export default function Showcase() {
           transition={{ duration: 1, ease: EASE }}
           className="order-2 md:order-1"
         >
-          <p className="font-sans text-[11px] tracking-[0.45em] text-gold uppercase">
-            [ 03 — Craft ]
+          <p className="font-mono text-[11px] tracking-[0.45em] text-amber uppercase">
+            [ 03 — Engineering ]
           </p>
-          <h2 className="mt-6 font-display text-4xl leading-[1.05] font-black tracking-tight text-bone uppercase md:text-6xl">
-            Frames that
+          <h2 className="mt-6 font-display text-6xl leading-[0.95] tracking-wide text-bone uppercase md:text-7xl">
+            Built in
             <br />
-            <span className="text-gradient-gold font-serif lowercase italic">
-              breathe
-            </span>
+            <span className="text-outline">silence</span>
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-mute">
-            Images move with the scroll at film-frame rates — subtle parallax,
-            scale and drift that make a page feel shot, not coded. Every asset
-            is art-directed for the frame it lives in.
+            Design and manufacturing under a single roof in Dhaka and
+            Rotterdam. Each unit is hand-assembled, machine-verified and
+            signed by its build team before it ships.
           </p>
-          <div className="mt-8 flex gap-3">
-            {["Scroll-linked", "60fps", "Art-directed"].map((tag) => (
+          <div className="mt-8 flex flex-wrap gap-3">
+            {["ISO 9001", "MIL-STD-810H", "IP68"].map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-line px-4 py-1.5 font-sans text-[10px] tracking-[0.25em] text-mute uppercase"
+                className="border border-line px-4 py-1.5 font-mono text-[10px] tracking-[0.25em] text-mute uppercase"
               >
                 {tag}
               </span>
@@ -75,19 +80,18 @@ export default function Showcase() {
           </div>
         </motion.div>
         <ParallaxImage
-          src="https://picsum.photos/seed/halcyon-craft1/1400/1000"
-          alt="Cinematic frame"
+          src="https://picsum.photos/seed/vanguard-eng1/1400/1000"
+          alt="Engineering frame"
           ratio="aspect-[4/3]"
-          className="order-1 rounded-xl md:order-2"
+          className="order-1 md:order-2"
         />
       </div>
 
       <div className="mt-24 grid items-center gap-10 md:grid-cols-2 md:gap-16">
         <ParallaxImage
-          src="https://picsum.photos/seed/halcyon-craft2/1400/1800"
-          alt="Portrait frame"
+          src="https://picsum.photos/seed/vanguard-eng2/1400/1800"
+          alt="Field deployment"
           ratio="aspect-[3/4]"
-          className="rounded-xl"
         />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -95,28 +99,26 @@ export default function Showcase() {
           viewport={{ once: true, margin: "-10% 0px" }}
           transition={{ duration: 1, ease: EASE }}
         >
-          <p className="font-sans text-[11px] tracking-[0.45em] text-gold uppercase">
-            [ 04 — Motion ]
+          <p className="font-mono text-[11px] tracking-[0.45em] text-amber uppercase">
+            [ 04 — Deployment ]
           </p>
-          <h2 className="mt-6 font-display text-4xl leading-[1.05] font-black tracking-tight text-bone uppercase md:text-6xl">
-            Nothing moves
+          <h2 className="mt-6 font-display text-6xl leading-[0.95] tracking-wide text-bone uppercase md:text-7xl">
+            Ready at
             <br />
-            <span className="text-gradient-gold font-serif lowercase italic">
-              without a reason
-            </span>
+            <span className="text-amber">dawn</span>
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-mute">
-            Easing curves tuned by hand. Springs with real physics. Every
-            transition answers a question: what should the eye see next? The
-            result is motion that feels inevitable — never decorative.
+            Field teams on standby in 12 time zones. Spares pre-positioned.
+            Remote diagnostics in under a minute. When your window opens, we
+            are already there.
           </p>
           <a
             href="#contact"
             data-hover
-            className="group mt-8 inline-flex items-center gap-3 font-sans text-[11px] font-semibold tracking-[0.3em] text-bone uppercase"
+            className="group mt-8 inline-flex items-center gap-3 font-mono text-[11px] font-bold tracking-[0.3em] text-bone uppercase"
           >
-            <span className="border-b border-gold pb-1 transition-colors group-hover:text-gold">
-              Request the full reel
+            <span className="border-b border-amber pb-1 transition-colors group-hover:text-amber">
+              Request deployment dossier
             </span>
             <span className="transition-transform duration-500 group-hover:translate-x-1.5">
               →
