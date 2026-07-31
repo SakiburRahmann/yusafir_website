@@ -5,22 +5,46 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+const bootLines = [
+  "> VANGUARD SECURE BOOT v9.4.1",
+  "> ESTABLISHING ENCRYPTED UPLINK ....... OK",
+  "> AUTHENTICATING OPERATOR .............. OK",
+  "> LOADING MISSION PACKAGE VG-2026 ....... OK",
+  "> SELF-TEST: 412/412 UNITS PASSED",
+  "> ALL SYSTEMS READY. PROCEED.",
+];
+
 export default function Loader() {
+  const [line, setLine] = useState(0);
   const [count, setCount] = useState(0);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const lineInt = setInterval(() => {
+      setLine((l) => {
+        if (l >= bootLines.length) {
+          clearInterval(lineInt);
+          return l;
+        }
+        return l + 1;
+      });
+    }, 260);
+
+    const countInt = setInterval(() => {
       setCount((c) => {
         if (c >= 100) {
-          clearInterval(interval);
-          setTimeout(() => setDone(true), 400);
+          clearInterval(countInt);
+          setTimeout(() => setDone(true), 350);
           return 100;
         }
-        return c + Math.ceil(Math.random() * 12);
+        return c + Math.ceil(Math.random() * 11);
       });
-    }, 80);
-    return () => clearInterval(interval);
+    }, 70);
+
+    return () => {
+      clearInterval(lineInt);
+      clearInterval(countInt);
+    };
   }, []);
 
   return (
@@ -28,71 +52,62 @@ export default function Loader() {
       {!done && (
         <motion.div
           exit={{ y: "-100%" }}
-          transition={{ duration: 0.9, ease: EASE }}
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-ink"
+          transition={{ duration: 0.8, ease: EASE }}
+          className="fixed inset-0 z-[200] flex flex-col justify-center bg-ink px-6 md:px-16"
         >
-          <div className="relative flex items-center justify-center">
-            <div className="radar animate-spin-slow absolute size-40 rounded-full" />
-            <div className="absolute size-40 rounded-full border border-amber/30" />
-            <div className="absolute size-28 rounded-full border border-amber/20" />
-            <motion.div
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.7, ease: EASE }}
-              className="relative"
-            >
-              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-                <circle cx="22" cy="22" r="20" stroke="#e8a33d" strokeWidth="2" />
-                <circle cx="22" cy="22" r="12" stroke="#e8a33d" strokeWidth="2" />
-                <circle cx="22" cy="22" r="4" fill="#e8a33d" />
-                <line x1="22" y1="2" x2="22" y2="14" stroke="#e8a33d" strokeWidth="2" />
-                <line x1="22" y1="30" x2="22" y2="42" stroke="#e8a33d" strokeWidth="2" />
-                <line x1="2" y1="22" x2="14" y2="22" stroke="#e8a33d" strokeWidth="2" />
-                <line x1="30" y1="22" x2="42" y2="22" stroke="#e8a33d" strokeWidth="2" />
-              </svg>
-            </motion.div>
-          </div>
+          <div className="hazard-thin absolute top-0 left-0 h-1 w-full opacity-70" />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="w-full max-w-2xl"
+          >
+            <div className="flex items-center gap-3 border border-line bg-panel p-4 font-mono text-[11px] tracking-[0.2em] text-mute uppercase md:p-5 md:text-[12px]">
+              <span className="animate-blink size-1.5 rounded-full bg-amber" />
+              Terminal — Uplink: Dhaka-01
+            </div>
+            <div className="scanlines relative border border-t-0 border-line bg-[#0d110a] p-4 md:p-6">
+              <div className="min-h-[190px]">
+                {bootLines.slice(0, line).map((l, i) => (
+                  <motion.p
+                    key={i}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={`font-mono text-[11px] leading-7 md:text-[13px] ${
+                      l.startsWith("> ALL SYSTEMS")
+                        ? "text-amber"
+                        : "text-bone/80"
+                    }`}
+                  >
+                    {l}
+                  </motion.p>
+                ))}
+                <span className="animate-blink inline-block h-4 w-2.5 translate-y-0.5 bg-amber" />
+              </div>
+              <div className="mt-6 flex items-center justify-between border-t border-line pt-4">
+                <span className="font-mono text-[10px] tracking-[0.3em] text-faint uppercase">
+                  Mission package loading
+                </span>
+                <span className="font-display text-4xl tracking-tight text-bone md:text-5xl">
+                  {count}
+                  <span className="text-gradient-amber text-xl align-top md:text-2xl">
+                    %
+                  </span>
+                </span>
+              </div>
+            </div>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-10 font-display text-2xl tracking-[0.3em] text-bone uppercase"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-8 font-display text-2xl tracking-[0.3em] text-bone/60 uppercase"
           >
             Vanguard<span className="text-amber">®</span>
           </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.35 }}
-            className="animate-blink mt-3 font-mono text-[10px] tracking-[0.35em] text-mute uppercase"
-          >
-            Establishing comms — standby
-          </motion.p>
-
-          <div className="mt-10 overflow-hidden">
-            <motion.p
-              initial={{ y: "110%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.7, ease: EASE }}
-              className="font-display text-8xl tracking-tight text-bone md:text-9xl"
-            >
-              {count}
-              <span className="text-gradient-amber text-3xl align-top md:text-5xl">
-                %
-              </span>
-            </motion.p>
-          </div>
-
-          <motion.div className="absolute bottom-10 left-1/2 h-px w-56 -translate-x-1/2 overflow-hidden bg-line">
-            <motion.div
-              className="h-full w-full origin-left bg-amber"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: count / 100 }}
-              transition={{ ease: "easeOut" }}
-            />
-          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

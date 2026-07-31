@@ -1,31 +1,27 @@
-import SmoothScroll from "@/components/smooth-scroll";
-import Loader from "@/components/loader";
-import Cursor from "@/components/cursor";
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
-import Manifesto from "@/components/manifesto";
+import Ticker from "@/components/ticker";
+import Intel from "@/components/intel";
 import Stripes from "@/components/stripes";
-import Horizontal from "@/components/horizontal";
-import Showcase from "@/components/showcase";
-import Services from "@/components/services";
-import Quote from "@/components/quote";
+import Systems from "@/components/systems";
+import Spec from "@/components/spec";
+import Timeline from "@/components/timeline";
+import Memo from "@/components/memo";
 import Footer from "@/components/footer";
 
 export default function Home() {
   return (
     <>
-      <Loader />
-      <SmoothScroll />
-      <Cursor />
       <Navbar />
-      <main>
+      <main id="top">
         <Hero />
-        <Manifesto />
+        <Ticker />
+        <Intel />
         <Stripes />
-        <Horizontal />
-        <Showcase />
-        <Services />
-        <Quote />
+        <Systems />
+        <Spec />
+        <Timeline />
+        <Memo />
       </main>
       <Footer />
     </>

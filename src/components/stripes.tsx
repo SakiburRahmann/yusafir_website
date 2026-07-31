@@ -1,19 +1,23 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const STRIPS = 10;
-
-const SRC = "https://picsum.photos/seed/vanguard-theatre/2000/1300";
+const SRC = "https://picsum.photos/seed/vanguard-sat/2000/1300";
 
 const captions = [
-  "The theatre of operations.",
-  "Watching the ground move.",
+  "Satellite pass — live.",
+  "Ground shifts with you.",
   "Every frame is intel.",
-  "Speed, stealth, silence.",
+  "Theatre sweep complete.",
 ];
 
 function Strip({
@@ -24,21 +28,14 @@ function Strip({
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
 }) {
   const even = index % 2 === 0;
-  const y = useTransform(
-    progress,
-    [0, 1],
-    [even ? 100 : -100, even ? -100 : 100]
-  );
-  const drift = useTransform(progress, [0, 1], [0, even ? -28 : 28]);
+  const y = useTransform(progress, [0, 1], [even ? 110 : -110, even ? -110 : 110]);
+  const drift = useTransform(progress, [0, 1], [0, even ? -30 : 30]);
 
   return (
-    <motion.div
-      style={{ y }}
-      className="relative h-full flex-1 overflow-hidden"
-    >
+    <motion.div style={{ y }} className="relative h-full flex-1 overflow-hidden">
       <motion.div style={{ x: drift }} className="absolute inset-0">
         <div
-          className="military-img absolute inset-0 scale-[1.4]"
+          className="military-img absolute inset-0 scale-[1.45]"
           style={{
             backgroundImage: `url(${SRC})`,
             backgroundSize: `${STRIPS * 100}% auto`,
@@ -46,7 +43,6 @@ function Strip({
           }}
         />
       </motion.div>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/40" />
       {index > 0 && <div className="absolute inset-y-0 left-0 w-px bg-bone/10" />}
     </motion.div>
   );
@@ -64,47 +60,54 @@ export default function Stripes() {
     setCapIdx(Math.min(captions.length - 1, Math.floor(v * captions.length)));
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [1, 0.96, 1.02, 1.1]);
+  const scanTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="work" ref={ref} className="relative h-[340vh]">
+    <section ref={ref} className="relative h-[340vh] bg-ink">
       <div className="sticky top-0 h-screen overflow-hidden">
-        <motion.div style={{ scale }} className="flex h-full w-full">
+        <motion.div className="flex h-full w-full">
           {Array.from({ length: STRIPS }).map((_, i) => (
             <Strip key={i} index={i} progress={scrollYProgress} />
           ))}
         </motion.div>
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/55 via-transparent to-ink/70" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-ink/80" />
+        <div className="scanlines pointer-events-none absolute inset-0" />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-between py-14">
-          <motion.p
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.3 }}
-            className="flex items-center gap-4 font-mono text-[11px] tracking-[0.45em] text-bone/80 uppercase"
-          >
-            <span className="animate-blink size-1.5 rounded-full bg-amber" />
-            [ 01 — Recon ]
-          </motion.p>
+        <motion.div
+          style={{ top: scanTop }}
+          className="pointer-events-none absolute right-0 left-0 h-px bg-amber/70 shadow-[0_0_18px_rgba(232,163,61,0.9)]"
+        />
 
-          <div className="text-center">
-            <AnimatedCaption caption={captions[capIdx]} />
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-5 font-mono text-[11px] tracking-[0.4em] text-bone/60 uppercase"
+        <span className="absolute top-4 left-4 size-6 border-t-2 border-l-2 border-amber" />
+        <span className="absolute top-4 right-4 size-6 border-t-2 border-r-2 border-amber" />
+        <span className="absolute bottom-4 left-4 size-6 border-b-2 border-l-2 border-amber" />
+        <span className="absolute right-4 bottom-4 size-6 border-r-2 border-b-2 border-amber" />
+
+        <div className="absolute top-6 left-10 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-bone/80 uppercase md:left-14">
+          <span className="animate-blink size-1.5 rounded-full bg-amber" />
+          SATELLITE FEED — HALCYON-7 ORBIT
+        </div>
+        <div className="absolute top-6 right-10 hidden font-mono text-[10px] tracking-[0.3em] text-bone/60 uppercase md:block md:right-14">
+          31.23°N 121.47°E · ALT 518 KM
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 pb-14 text-center">
+          <h2 key={capIdx} className="overflow-hidden">
+            <motion.span
+              initial={{ y: "115%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.7, ease: EASE }}
+              className="block font-display text-4xl tracking-wide text-bone uppercase md:text-7xl"
             >
-              Continue scroll — imagery unfolds with your speed
-            </motion.p>
-          </div>
-
-          <div className="flex items-center gap-6">
+              {captions[capIdx]}
+            </motion.span>
+          </h2>
+          <div className="flex items-center gap-5">
             <span className="font-mono text-[10px] tracking-[0.35em] text-bone/50 uppercase">
-              Recon progress
+              Sweep
             </span>
-            <div className="relative h-px w-40 overflow-hidden bg-bone/15">
+            <div className="relative h-px w-44 overflow-hidden bg-bone/15">
               <motion.div
                 className="absolute inset-0 origin-left bg-amber"
                 style={{ scaleX: scrollYProgress }}
@@ -117,21 +120,6 @@ export default function Stripes() {
         </div>
       </div>
     </section>
-  );
-}
-
-function AnimatedCaption({ caption }: { caption: string }) {
-  return (
-    <h2 key={caption} className="overflow-hidden">
-      <motion.span
-        initial={{ y: "110%" }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.7, ease: EASE }}
-        className="block font-display text-4xl tracking-wide text-bone uppercase md:text-6xl lg:text-7xl"
-      >
-        {caption}
-      </motion.span>
-    </h2>
   );
 }
 

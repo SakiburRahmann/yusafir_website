@@ -24,8 +24,7 @@ export const metadata: Metadata = {
     "Vanguard builds precision systems for land, air and domain awareness. Engineered for those who protect the rest of us.",
   openGraph: {
     title: "VANGUARD — Defense & Tactical Systems",
-    description:
-      "Precision systems for land, air and domain awareness.",
+    description: "Precision systems for land, air and domain awareness.",
     type: "website",
   },
 };

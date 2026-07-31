@@ -1,62 +1,63 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useSpring } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function Cursor() {
-  const [enabled, setEnabled] = useState(false);
-  const [hovering, setHovering] = useState(false);
-  const x = useSpring(-100, { stiffness: 700, damping: 40, mass: 0.4 });
-  const y = useSpring(-100, { stiffness: 700, damping: 40, mass: 0.4 });
-  const ringX = useSpring(-100, { stiffness: 150, damping: 22, mass: 0.8 });
-  const ringY = useSpring(-100, { stiffness: 150, damping: 22, mass: 0.8 });
+  const outer = useRef<HTMLDivElement>(null);
+  const inner = useRef<HTMLDivElement>(null);
+  const hovered = useRef(false);
 
   useEffect(() => {
-    if (!window.matchMedia("(pointer: fine)").matches) return;
-    setEnabled(true);
+    let x = -100, y = -100, ox = -100, oy = -100, raf = 0;
 
-    const move = (e: MouseEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
-      ringX.set(e.clientX);
-      ringY.set(e.clientY);
-    };
-    const over = (e: MouseEvent) => {
-      const t = e.target as HTMLElement;
-      setHovering(!!t.closest("a, button, [data-hover], input, textarea"));
+    const onMove = (e: MouseEvent) => {
+      x = e.clientX;
+      y = e.clientY;
+      const target = e.target as HTMLElement;
+      hovered.current = !!target.closest("a, button, [data-hover]");
     };
 
-    window.addEventListener("mousemove", move, { passive: true });
-    window.addEventListener("mouseover", over, { passive: true });
+    const loop = () => {
+      ox += (x - ox) * 0.16;
+      oy += (y - oy) * 0.16;
+      if (outer.current) {
+        outer.current.style.transform = `translate(${ox}px, ${oy}px)`;
+        const d = hovered.current ? 30 : 14;
+        outer.current.style.width = `${d}px`;
+        outer.current.style.height = `${d}px`;
+        outer.current.style.borderColor = hovered.current
+          ? "rgba(232,163,61,0.9)"
+          : "rgba(232,228,216,0.35)";
+      }
+      if (inner.current) {
+        inner.current.style.transform = `translate(${x}px, ${y}px)`;
+        inner.current.style.opacity = hovered.current ? "0" : "1";
+      }
+      raf = requestAnimationFrame(loop);
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    raf = requestAnimationFrame(loop);
     return () => {
-      window.removeEventListener("mousemove", move);
-      window.removeEventListener("mouseover", over);
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
     };
-  }, [x, y, ringX, ringY]);
-
-  if (!enabled) return null;
+  }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[180]" aria-hidden>
-      <motion.div
-        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2"
-        style={{ x, y }}
-      >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <line x1="7" y1="0" x2="7" y2="14" stroke="#e8a33d" strokeWidth="1.5" />
-          <line x1="0" y1="7" x2="14" y2="7" stroke="#e8a33d" strokeWidth="1.5" />
-        </svg>
-      </motion.div>
-      <motion.div
-        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-amber/60"
-        style={{ x: ringX, y: ringY }}
-        animate={{
-          width: hovering ? 48 : 30,
-          height: hovering ? 48 : 30,
-          opacity: hovering ? 0.9 : 0.45,
-        }}
-        transition={{ type: "spring", stiffness: 320, damping: 26 }}
+    <>
+      <div
+        ref={outer}
+        className="pointer-events-none fixed top-0 left-0 z-[100] -translate-x-1/2 -translate-y-1/2 rounded-full border transition-[border-color] duration-300"
+        style={{ width: 14, height: 14 }}
       />
-    </div>
+      <div
+        ref={inner}
+        className="pointer-events-none fixed top-0 left-0 z-[100] -translate-x-1/2 -translate-y-1/2"
+        style={{ width: 3, height: 3, marginLeft: -1, marginTop: -1 }}
+      >
+        <span className="block size-[3px] rounded-full bg-amber" />
+      </div>
+    </>
   );
 }
