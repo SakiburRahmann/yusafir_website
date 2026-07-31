@@ -1,38 +1,31 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  style: ["normal", "italic"],
-});
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
-const plex = IBM_Plex_Mono({
+const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-plex",
+  variable: "--font-jetbrains",
 });
 
 export const metadata: Metadata = {
-  title: "AURUM — Digital Atelier",
+  title: "Linear — A better way to build products",
   description:
-    "Aurum is a digital atelier crafting identities, products and experiences for brands that refuse to be ordinary.",
+    "Linear is a purpose-built tool for planning and building products. It helps you focus on what matters most — shipping.",
   openGraph: {
-    title: "AURUM — Digital Atelier",
+    title: "Linear — A better way to build products",
     description:
-      "We craft digital experiences that feel inevitable.",
+      "Linear is a purpose-built tool for planning and building products.",
     type: "website",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0b",
+  themeColor: "#0e0e0e",
   width: "device-width",
   initialScale: 1,
 };
@@ -41,13 +34,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${plex.variable}`}
-    >
-      <body className="grain bg-ink font-sans text-bone antialiased">
-        {children}
-      </body>
+    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
+      <body className="bg-ink font-sans text-fore antialiased">{children}</body>
     </html>
   );
 }
