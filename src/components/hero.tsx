@@ -1,177 +1,140 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Mockup from "@/components/mockup";
+import { motion } from "framer-motion";
+import Magnetic from "@/components/magnetic";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const stars = [
-  { top: "12%", left: "8%", size: 2, delay: 0 },
-  { top: "22%", left: "88%", size: 1.5, delay: 0.8 },
-  { top: "30%", left: "16%", size: 1, delay: 1.6 },
-  { top: "44%", left: "92%", size: 2, delay: 0.4 },
-  { top: "58%", left: "6%", size: 1.5, delay: 2.2 },
-  { top: "66%", left: "80%", size: 1, delay: 1.2 },
-  { top: "8%", left: "42%", size: 1.5, delay: 2.8 },
-  { top: "18%", left: "68%", size: 1, delay: 0.2 },
+const marqueeWords = [
+  "Brand Identity",
+  "Art Direction",
+  "Web Design",
+  "Motion",
+  "Development",
+  "Strategy",
 ];
 
 export default function Hero() {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative flex min-h-screen flex-col overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="hero-grid absolute inset-0" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(94,106,210,0.16),transparent_70%)]" />
-        {stars.map((s, i) => (
-          <motion.span
-            key={i}
-            className="absolute rounded-full bg-white"
-            style={{ top: s.top, left: s.left, width: s.size, height: s.size }}
-            animate={{ opacity: [0.1, 0.7, 0.1] }}
-            transition={{ duration: 4, repeat: Infinity, delay: s.delay }}
-          />
-        ))}
+        <div className="animate-pulse-soft absolute -top-1/4 left-1/2 h-[80vh] w-[110vw] -translate-x-1/2 rounded-full bg-gold/[0.06] blur-[150px]" />
+        <div className="absolute right-[-10%] bottom-[-20%] h-[50vh] w-[45vw] rounded-full bg-[#3b2a17]/[0.35] blur-[130px]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1280px] px-6 pt-36 pb-24 text-center md:px-10 md:pt-44">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col items-center justify-center px-6 pt-36 pb-10 text-center md:px-10">
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          className="mb-8 flex justify-center"
+          transition={{ duration: 0.8, ease: EASE, delay: 2.6 }}
+          className="mb-8 flex items-center gap-3 font-sans text-[11px] tracking-[0.4em] text-mute uppercase"
         >
-          <a
-            href="#features"
-            className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pr-4 pl-1.5 text-[13px] text-zinc-300 backdrop-blur transition-colors hover:border-white/20"
-          >
-            <span className="rounded-full bg-gradient-to-r from-[#5e6ad2] to-[#8b5cf6] px-2.5 py-0.5 text-[11px] font-semibold text-white">
-              New
-            </span>
-            Linear Autonomy is here
-            <span className="text-zinc-500 transition-transform duration-300 group-hover:translate-x-0.5">
-              →
-            </span>
-          </a>
-        </motion.div>
+          <span className="h-px w-8 bg-gold" />
+          Creative Studio — Est. 2016
+          <span className="h-px w-8 bg-gold" />
+        </motion.p>
 
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-semibold tracking-[-0.03em] text-fore sm:text-6xl md:text-[5.2rem] md:leading-[1.05]">
-          <motion.span
-            className="block"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-          >
-            A better way
-          </motion.span>
-          <motion.span
-            className="gradient-text block pb-2"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.22 }}
-          >
-            to build products
-          </motion.span>
+        <h1 className="font-display text-[17vw] leading-[0.9] font-black tracking-[-0.02em] uppercase select-none sm:text-[15vw] lg:text-[13vw]">
+          {["Halcyon", "®"].map((word, li) => (
+            <span key={word} className="block overflow-hidden">
+              <motion.span
+                className={`inline-block ${
+                  li === 1
+                    ? "text-gradient-gold align-top text-[0.22em]"
+                    : ""
+                }`}
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1.1, ease: EASE, delay: 2.7 + li * 0.12 }}
+              >
+                {word}
+              </motion.span>
+            </span>
+          ))}
         </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 0.35 }}
-          className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sec"
+          transition={{ duration: 0.9, ease: EASE, delay: 3.1 }}
+          className="mt-8 max-w-lg text-base leading-relaxed text-mute md:text-lg"
         >
-          Linear is a purpose-built tool for planning and building products.
-          It helps you focus on what matters most —{" "}
-          <span className="text-zinc-200">shipping</span>.
+          We make the internet feel{" "}
+          <span className="font-serif text-bone italic">alive</span> — film-like
+          websites, art direction and digital craft for brands that refuse to
+          scroll by.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 0.48 }}
-          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          transition={{ duration: 0.9, ease: EASE, delay: 3.25 }}
+          className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
         >
-          <a
-            href="#cta"
-            className="btn-primary inline-flex w-full items-center justify-center rounded-lg px-7 py-3 text-[15px] font-semibold text-white sm:w-auto"
-          >
-            Start now
-          </a>
-          <a
-            href="#features"
-            className="group inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.03] px-7 py-3 text-[15px] font-semibold text-zinc-200 transition-colors hover:bg-white/[0.07] sm:w-auto"
-          >
-            <span className="flex size-4 items-center justify-center rounded-full border border-zinc-400 transition-colors group-hover:border-white">
-              <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor">
-                <path d="M0.5 0.5L5 3L0.5 5.5V0.5Z" />
-              </svg>
-            </span>
-            View demo
-          </a>
+          <Magnetic>
+            <a
+              href="#work"
+              data-hover
+              className="group inline-flex items-center gap-3 rounded-full bg-bone px-9 py-4 font-sans text-[12px] font-semibold tracking-[0.2em] text-ink uppercase transition-colors duration-300 hover:bg-gold"
+            >
+              Enter the reel
+              <span className="inline-block transition-transform duration-500 group-hover:translate-y-0.5">
+                ↓
+              </span>
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
+              href="#contact"
+              data-hover
+              className="inline-flex items-center gap-3 rounded-full border border-line px-9 py-4 font-sans text-[12px] font-semibold tracking-[0.2em] text-bone uppercase transition-colors duration-300 hover:border-gold hover:text-gold"
+            >
+              Start a project
+            </a>
+          </Magnetic>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.65 }}
-          className="mt-10 flex items-center justify-center gap-4 text-[13px] text-sec"
+          transition={{ duration: 1, delay: 3.5 }}
+          className="mt-14 flex items-center gap-2.5"
         >
-          <div className="flex -space-x-2">
-            {["AR", "MK", "JL", "SW"].map((ini, i) => (
-              <span
-                key={ini}
-                className={`flex size-7 items-center justify-center rounded-full text-[9px] font-semibold text-white ring-2 ring-ink ${
-                  ["bg-[#5e6ad2]", "bg-[#8b5cf6]", "bg-[#22c55e]", "bg-[#f59e0b]"][i]
-                }`}
-              >
-                {ini}
-              </span>
-            ))}
-          </div>
-          Trusted by <span className="font-semibold text-zinc-200">4,500+</span>{" "}
-          high-velocity teams
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-gold/60" />
+            <span className="relative inline-flex size-2 rounded-full bg-gold" />
+          </span>
+          <span className="font-sans text-[10px] tracking-[0.35em] text-mute uppercase">
+            Available for select projects — 2026
+          </span>
         </motion.div>
-
-        <div className="mt-20">
-          <Mockup />
-        </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] bg-ink/95"
-          >
-            <div className="flex justify-end p-6">
-              <button
-                onClick={() => setOpen(false)}
-                className="rounded-lg border border-white/10 px-4 py-2 text-sm text-zinc-300"
-              >
-                Close
-              </button>
-            </div>
-            <div className="flex flex-col items-center gap-6 text-3xl font-semibold">
-              {["Features", "Method", "Company", "Pricing"].map((l) => (
-                <a key={l} href="#features" onClick={() => setOpen(false)} className="hover:text-zinc-400">
-                  {l}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 3.6 }}
+        className="relative border-t border-line py-5"
+      >
+        <div className="mask-fade-x overflow-hidden">
+          <div className="animate-marquee flex w-max items-center whitespace-nowrap">
+            {[0, 1].map((half) => (
+              <div key={half} className="flex items-center">
+                {marqueeWords.map((word) => (
+                  <span
+                    key={`${half}-${word}`}
+                    className="flex items-center font-display text-xl font-bold tracking-wide text-bone/50 uppercase md:text-2xl"
+                  >
+                    <span className="px-8">{word}</span>
+                    <span className="text-sm text-gold">✦</span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

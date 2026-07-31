@@ -5,11 +5,18 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
-  // Suppress cross-origin dev warning (preview environment)
   allowedDevOrigins: ["*.space-z.ai"],
-  // Allow the Yusafir logo image domain (none external yet, but easy to extend)
   images: {
-    remotePatterns: [],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
+      {
+        protocol: "https",
+        hostname: "fastly.picsum.photos",
+      },
+    ],
   },
 };
 

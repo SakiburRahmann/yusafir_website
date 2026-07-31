@@ -1,31 +1,38 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Archivo, Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  style: ["italic"],
+});
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-});
-
 export const metadata: Metadata = {
-  title: "Linear — A better way to build products",
+  title: "HALCYON — Creative Studio",
   description:
-    "Linear is a purpose-built tool for planning and building products. It helps you focus on what matters most — shipping.",
+    "Halcyon is a creative studio crafting digital experiences that feel like film — every scroll a scene.",
   openGraph: {
-    title: "Linear — A better way to build products",
+    title: "HALCYON — Creative Studio",
     description:
-      "Linear is a purpose-built tool for planning and building products.",
+      "We make the internet feel alive. Film-like websites, art direction and digital craft.",
     type: "website",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e0e0e",
+  themeColor: "#0a0a0b",
   width: "device-width",
   initialScale: 1,
 };
@@ -34,8 +41,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
-      <body className="bg-ink font-sans text-fore antialiased">{children}</body>
+    <html
+      lang="en"
+      className={`${archivo.variable} ${fraunces.variable} ${inter.variable}`}
+    >
+      <body className="grain bg-ink font-sans text-bone antialiased">
+        {children}
+      </body>
     </html>
   );
 }

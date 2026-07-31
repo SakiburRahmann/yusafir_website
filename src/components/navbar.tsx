@@ -8,7 +8,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -18,53 +18,49 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -70, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 2.9 }}
+      className={`fixed inset-x-0 top-0 z-[70] transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/[0.06] bg-ink/70 backdrop-blur-xl"
+          ? "border-b border-line bg-ink/70 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 md:px-10">
-        <a href="#top" className="flex items-center gap-2.5">
-          <span className="flex size-7 items-center justify-center rounded-[7px] bg-gradient-to-br from-[#5e6ad2] to-[#8b5cf6] text-[15px] font-bold text-white shadow-[0_0_16px_rgba(94,106,210,0.5)]">
-            L
-          </span>
-          <span className="text-[17px] font-semibold tracking-tight text-white">
-            Linear
+      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10">
+        <a href="#top" className="flex items-center gap-2">
+          <span className="size-2 rounded-full bg-gold" />
+          <span className="font-display text-sm font-black tracking-[0.25em] text-bone uppercase">
+            Halcyon
           </span>
         </a>
 
-        <div className="hidden items-center gap-8 text-[14px] font-medium text-sec md:flex">
+        <div className="hidden items-center gap-9 md:flex">
           {[
-            ["Features", "#features"],
-            ["Method", "#method"],
-            ["Company", "#cta"],
-            ["Pricing", "#cta"],
-            ["Changelog", "#cta"],
+            ["Work", "#work"],
+            ["Studio", "#manifesto"],
+            ["Services", "#services"],
+            ["Contact", "#contact"],
           ].map(([label, href]) => (
             <a
               key={label}
               href={href}
-              className="transition-colors hover:text-white"
+              className="group relative font-sans text-[11px] font-semibold tracking-[0.3em] text-mute uppercase transition-colors duration-300 hover:text-bone"
             >
               {label}
+              <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" />
             </a>
           ))}
         </div>
 
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden md:block">
           <a
-            href="#cta"
-            className="text-[14px] font-medium text-sec transition-colors hover:text-white"
+            href="#contact"
+            data-hover
+            className="group inline-flex items-center gap-2.5 rounded-full border border-line px-6 py-2.5 font-sans text-[11px] font-bold tracking-[0.25em] text-bone uppercase transition-all duration-500 hover:border-gold hover:bg-gold hover:text-ink"
           >
-            Sign in
-          </a>
-          <a
-            href="#cta"
-            className="rounded-lg px-4 py-2 text-[14px] font-semibold text-white shadow-[0_0_20px_rgba(94,106,210,0.35)] transition-all duration-300 hover:brightness-110 bg-gradient-to-r from-[#5e6ad2] to-[#8b5cf6]"
-          >
-            Start now
+            Start a project
+            <span className="transition-transform duration-500 group-hover:translate-x-1">
+              →
+            </span>
           </a>
         </div>
 
@@ -73,44 +69,31 @@ export default function Navbar() {
           className="flex flex-col gap-1.5 p-2 md:hidden"
           aria-label="Menu"
         >
-          <span className="h-[2px] w-6 rounded bg-white transition-all duration-300" />
-          <span className={`h-[2px] rounded bg-white transition-all duration-300 ${open ? "w-3" : "w-6"}`} />
+          <span className="h-[2px] w-6 rounded bg-bone" />
+          <span
+            className={`h-[2px] rounded bg-bone transition-all duration-300 ${open ? "w-3" : "w-6"}`}
+          />
         </button>
       </nav>
 
       {open && (
-        <div className="border-t border-white/[0.06] bg-ink/95 backdrop-blur-xl md:hidden">
+        <div className="border-t border-line bg-ink/95 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-5 px-8 py-6">
             {[
-              ["Features", "#features"],
-              ["Method", "#method"],
-              ["Company", "#cta"],
-              ["Pricing", "#cta"],
+              ["Work", "#work"],
+              ["Studio", "#manifesto"],
+              ["Services", "#services"],
+              ["Contact", "#contact"],
             ].map(([label, href]) => (
               <a
                 key={label}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="text-lg font-medium text-zinc-300"
+                className="font-display text-2xl font-extrabold uppercase text-bone"
               >
                 {label}
               </a>
             ))}
-            <div className="flex gap-4 pt-2">
-              <a
-                href="#cta"
-                className="rounded-lg border border-white/15 px-5 py-2.5 text-sm font-semibold text-zinc-200"
-              >
-                Sign in
-              </a>
-              <a
-                href="#cta"
-                onClick={() => setOpen(false)}
-                className="rounded-lg bg-gradient-to-r from-[#5e6ad2] to-[#8b5cf6] px-5 py-2.5 text-sm font-semibold text-white"
-              >
-                Start now
-              </a>
-            </div>
           </div>
         </div>
       )}
