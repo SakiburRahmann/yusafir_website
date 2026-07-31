@@ -1,27 +1,21 @@
-import Navbar from "@/components/navbar";
-import Hero from "@/components/hero";
-import Ticker from "@/components/ticker";
-import Intel from "@/components/intel";
-import Stripes from "@/components/stripes";
-import Systems from "@/components/systems";
-import Spec from "@/components/spec";
-import Timeline from "@/components/timeline";
-import Memo from "@/components/memo";
-import Footer from "@/components/footer";
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import EligibilityChecker from '@/components/EligibilityChecker';
+import ApplicationProcess from '@/components/ApplicationProcess';
+import ActiveNotices from '@/components/ActiveNotices';
+import FAQ from '@/components/FAQ';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main id="top">
+      <main id="main-content">
         <Hero />
-        <Ticker />
-        <Intel />
-        <Stripes />
-        <Systems />
-        <Spec />
-        <Timeline />
-        <Memo />
+        <EligibilityChecker />
+        <ApplicationProcess />
+        <ActiveNotices />
+        <FAQ />
       </main>
       <Footer />
     </>

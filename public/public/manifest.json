@@ -1,0 +1,21 @@
+{
+  "name": "Bangladesh Armed Forces Recruitment",
+  "short_name": "BAF Recruitment",
+  "description": "Official recruitment portal for Bangladesh Army, Navy, and Air Force",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#006747",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
