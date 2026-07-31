@@ -6,12 +6,12 @@ import Magnetic from "@/components/magnetic";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const marqueeWords = [
-  "Air Systems",
-  "Ground Systems",
-  "Cyber Defense",
-  "Command & Control",
-  "Domain Awareness",
-  "Field Logistics",
+  "Brand Identity",
+  "Art Direction",
+  "Web Design",
+  "Motion",
+  "Development",
+  "Strategy",
 ];
 
 export default function Hero() {
@@ -19,101 +19,66 @@ export default function Hero() {
     <section className="relative flex min-h-screen flex-col overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="hero-grid absolute inset-0" />
-        <div className="animate-pulse-soft absolute -top-1/4 left-1/2 h-[70vh] w-[100vw] -translate-x-1/2 rounded-full bg-olive/[0.09] blur-[150px]" />
-        <div className="absolute right-[-10%] bottom-[-15%] h-[45vh] w-[40vw] rounded-full bg-amber/[0.05] blur-[130px]" />
-        <div className="absolute top-10 left-10 hidden font-mono text-[10px] leading-5 tracking-[0.25em] text-faint uppercase md:block">
-          31.2304° N
-          <br />
-          121.4737° E
-        </div>
-        <div className="absolute top-10 right-10 hidden text-right font-mono text-[10px] leading-5 tracking-[0.25em] text-faint uppercase md:block">
-          SYS STATUS:
-          <br />
-          <span className="animate-blink text-amber">● OPERATIONAL</span>
-        </div>
-        <svg
-          className="absolute top-1/2 left-1/2 h-[44rem] w-[44rem] -translate-x-1/2 -translate-y-1/2 opacity-[0.05]"
-          viewBox="0 0 400 400"
-          fill="none"
-          stroke="#e8e4d8"
-        >
-          <circle cx="200" cy="200" r="60" />
-          <circle cx="200" cy="200" r="130" strokeDasharray="6 8" />
-          <circle cx="200" cy="200" r="195" strokeDasharray="2 10" />
-          <line x1="200" y1="0" x2="200" y2="400" />
-          <line x1="0" y1="200" x2="400" y2="200" />
-        </svg>
+        <div className="animate-pulse-soft absolute -top-1/4 left-1/2 h-[80vh] w-[110vw] -translate-x-1/2 rounded-full bg-gold/[0.06] blur-[150px]" />
+        <div className="absolute right-[-10%] bottom-[-20%] h-[50vh] w-[45vw] rounded-full bg-[#3b2a17]/[0.35] blur-[130px]" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col items-center justify-center px-6 pt-36 pb-8 text-center md:px-10">
-        <motion.div
+      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col items-center justify-center px-6 pt-36 pb-10 text-center md:px-10">
+        <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 2.6 }}
-          className="mb-8 flex items-center gap-4"
+          className="mb-8 flex items-center gap-3 font-sans text-[11px] tracking-[0.4em] text-mute uppercase"
         >
-          <span className="h-px w-8 bg-amber" />
-          <span className="flex items-center gap-2.5 font-mono text-[10px] tracking-[0.4em] text-mute uppercase">
-            <span className="animate-blink size-1.5 rounded-full bg-amber" />
-            Defense &amp; Tactical Systems
-          </span>
-          <span className="h-px w-8 bg-amber" />
-        </motion.div>
+          <span className="h-px w-8 bg-gold" />
+          Creative Studio — Est. 2016
+          <span className="h-px w-8 bg-gold" />
+        </motion.p>
 
-        <h1 className="font-display text-[19vw] leading-[0.85] tracking-[0.01em] uppercase select-none sm:text-[16vw] lg:text-[13.5vw]">
-          <span className="block overflow-hidden">
-            <motion.span
-              className="inline-block"
-              initial={{ y: "110%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.1, ease: EASE, delay: 2.7 }}
-            >
-              Vanguard
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden">
-            <motion.span
-              className="text-outline inline-block"
-              initial={{ y: "110%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.1, ease: EASE, delay: 2.82 }}
-            >
-              Defense
-            </motion.span>
-          </span>
+        <h1 className="font-display text-[17vw] leading-[0.9] font-black tracking-[-0.02em] uppercase select-none sm:text-[15vw] lg:text-[13vw]">
+          {["Halcyon", "®"].map((word, li) => (
+            <span key={word} className="block overflow-hidden">
+              <motion.span
+                className={`inline-block ${
+                  li === 1
+                    ? "text-gradient-gold align-top text-[0.22em]"
+                    : ""
+                }`}
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1.1, ease: EASE, delay: 2.7 + li * 0.12 }}
+              >
+                {word}
+              </motion.span>
+            </span>
+          ))}
         </h1>
-
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 3.1 }}
-          className="hazard-thin -mt-2 mb-8 h-2 w-[min(92vw,720px)] origin-center rounded-sm opacity-80 md:-mt-4"
-        />
 
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 3.2 }}
-          className="max-w-xl text-base leading-relaxed text-mute md:text-lg"
+          transition={{ duration: 0.9, ease: EASE, delay: 3.1 }}
+          className="mt-8 max-w-lg text-base leading-relaxed text-mute md:text-lg"
         >
-          Precision systems for land, air and domain awareness. Built to
-          protect, engineered to endure —{" "}
-          <span className="text-bone">for those who protect the rest of us.</span>
+          We make the internet feel{" "}
+          <span className="font-serif text-bone italic">alive</span> — film-like
+          websites, art direction and digital craft for brands that refuse to
+          scroll by.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 3.35 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 3.25 }}
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
         >
           <Magnetic>
             <a
               href="#work"
               data-hover
-              className="group inline-flex items-center gap-3 border-2 border-amber bg-amber px-9 py-4 font-mono text-[12px] font-bold tracking-[0.25em] text-ink uppercase transition-colors duration-300 hover:bg-transparent hover:text-amber"
+              className="group inline-flex items-center gap-3 rounded-full bg-bone px-9 py-4 font-sans text-[12px] font-semibold tracking-[0.2em] text-ink uppercase transition-colors duration-300 hover:bg-gold"
             >
-              View capabilities
+              Enter the reel
               <span className="inline-block transition-transform duration-500 group-hover:translate-y-0.5">
                 ↓
               </span>
@@ -123,9 +88,9 @@ export default function Hero() {
             <a
               href="#contact"
               data-hover
-              className="inline-flex items-center gap-3 border border-line px-9 py-4 font-mono text-[12px] font-bold tracking-[0.25em] text-bone uppercase transition-colors duration-300 hover:border-amber hover:text-amber"
+              className="inline-flex items-center gap-3 rounded-full border border-line px-9 py-4 font-sans text-[12px] font-semibold tracking-[0.2em] text-bone uppercase transition-colors duration-300 hover:border-gold hover:text-gold"
             >
-              Request briefing
+              Start a project
             </a>
           </Magnetic>
         </motion.div>
@@ -134,13 +99,15 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 3.5 }}
-          className="mt-14 flex flex-col items-center gap-2 font-mono text-[10px] tracking-[0.35em] text-faint uppercase sm:flex-row sm:gap-6"
+          className="mt-14 flex items-center gap-2.5"
         >
-          <span>RATING: A+ — DAS/OSD</span>
-          <span className="hidden text-amber sm:inline">▸</span>
-          <span>EST. 2009</span>
-          <span className="hidden text-amber sm:inline">▸</span>
-          <span>3 CONTINENTS · 12 THEATRES</span>
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-gold/60" />
+            <span className="relative inline-flex size-2 rounded-full bg-gold" />
+          </span>
+          <span className="font-sans text-[10px] tracking-[0.35em] text-mute uppercase">
+            Available for select projects — 2026
+          </span>
         </motion.div>
       </div>
 
@@ -148,7 +115,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 3.6 }}
-        className="relative border-t border-line py-4"
+        className="relative border-t border-line py-5"
       >
         <div className="mask-fade-x overflow-hidden">
           <div className="animate-marquee flex w-max items-center whitespace-nowrap">
@@ -157,10 +124,10 @@ export default function Hero() {
                 {marqueeWords.map((word) => (
                   <span
                     key={`${half}-${word}`}
-                    className="flex items-center font-mono text-[11px] font-semibold tracking-[0.4em] text-bone/40 uppercase"
+                    className="flex items-center font-display text-xl font-bold tracking-wide text-bone/50 uppercase md:text-2xl"
                   >
                     <span className="px-8">{word}</span>
-                    <span className="text-[8px] text-amber">■</span>
+                    <span className="text-sm text-gold">✦</span>
                   </span>
                 ))}
               </div>

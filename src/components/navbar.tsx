@@ -26,31 +26,27 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10">
-        <a href="#top" className="flex items-center gap-3">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="10" r="9" stroke="#e8a33d" strokeWidth="1.6" />
-            <circle cx="10" cy="10" r="5" stroke="#e8a33d" strokeWidth="1.6" />
-            <circle cx="10" cy="10" r="1.4" fill="#e8a33d" />
-          </svg>
-          <span className="font-display text-2xl tracking-[0.15em] text-bone uppercase">
-            Vanguard
+        <a href="#top" className="flex items-center gap-2">
+          <span className="size-2 rounded-full bg-gold" />
+          <span className="font-display text-sm font-black tracking-[0.25em] text-bone uppercase">
+            Halcyon
           </span>
         </a>
 
         <div className="hidden items-center gap-9 md:flex">
           {[
-            ["Recon", "#work"],
-            ["Platforms", "#work"],
-            ["Capabilities", "#services"],
+            ["Work", "#work"],
+            ["Studio", "#manifesto"],
+            ["Services", "#services"],
             ["Contact", "#contact"],
           ].map(([label, href]) => (
             <a
               key={label}
               href={href}
-              className="group relative font-mono text-[11px] font-semibold tracking-[0.3em] text-mute uppercase transition-colors duration-300 hover:text-bone"
+              className="group relative font-sans text-[11px] font-semibold tracking-[0.3em] text-mute uppercase transition-colors duration-300 hover:text-bone"
             >
               {label}
-              <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-amber transition-all duration-500 group-hover:w-full" />
+              <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" />
             </a>
           ))}
         </div>
@@ -59,9 +55,9 @@ export default function Navbar() {
           <a
             href="#contact"
             data-hover
-            className="group inline-flex items-center gap-2.5 border border-line px-6 py-2.5 font-mono text-[11px] font-bold tracking-[0.25em] text-bone uppercase transition-all duration-500 hover:border-amber hover:bg-amber hover:text-ink"
+            className="group inline-flex items-center gap-2.5 rounded-full border border-line px-6 py-2.5 font-sans text-[11px] font-bold tracking-[0.25em] text-bone uppercase transition-all duration-500 hover:border-gold hover:bg-gold hover:text-ink"
           >
-            Request briefing
+            Start a project
             <span className="transition-transform duration-500 group-hover:translate-x-1">
               →
             </span>
@@ -84,16 +80,16 @@ export default function Navbar() {
         <div className="border-t border-line bg-ink/95 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-5 px-8 py-6">
             {[
-              ["Recon", "#work"],
-              ["Platforms", "#work"],
-              ["Capabilities", "#services"],
+              ["Work", "#work"],
+              ["Studio", "#manifesto"],
+              ["Services", "#services"],
               ["Contact", "#contact"],
             ].map(([label, href]) => (
               <a
                 key={label}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="font-display text-3xl tracking-wide uppercase text-bone"
+                className="font-display text-2xl font-extrabold uppercase text-bone"
               >
                 {label}
               </a>

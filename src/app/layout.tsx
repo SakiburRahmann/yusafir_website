@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
+import { Archivo, Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
-const bebas = Bebas_Neue({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-bebas",
-  weight: "400",
+  variable: "--font-archivo",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  style: ["italic"],
 });
 
 const inter = Inter({
@@ -13,25 +19,20 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-});
-
 export const metadata: Metadata = {
-  title: "VANGUARD — Defense & Tactical Systems",
+  title: "HALCYON — Creative Studio",
   description:
-    "Vanguard builds precision systems for land, air and domain awareness. Engineered for those who protect the rest of us.",
+    "Halcyon is a creative studio crafting digital experiences that feel like film — every scroll a scene.",
   openGraph: {
-    title: "VANGUARD — Defense & Tactical Systems",
+    title: "HALCYON — Creative Studio",
     description:
-      "Precision systems for land, air and domain awareness.",
+      "We make the internet feel alive. Film-like websites, art direction and digital craft.",
     type: "website",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0e0a",
+  themeColor: "#0a0a0b",
   width: "device-width",
   initialScale: 1,
 };
@@ -42,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebas.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`${archivo.variable} ${fraunces.variable} ${inter.variable}`}
     >
       <body className="grain bg-ink font-sans text-bone antialiased">
         {children}
