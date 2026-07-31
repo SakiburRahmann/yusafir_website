@@ -7,43 +7,43 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const panels = [
   {
-    seed: "halcyon-p1",
+    seed: "vanguard-s1",
     w: 1200,
     h: 1500,
-    title: "Noir Campaign",
-    cat: "Art Direction",
+    title: "SENTINEL-9",
+    cat: "Autonomous air platform",
     tall: true,
   },
   {
-    seed: "halcyon-p2",
+    seed: "vanguard-s2",
     w: 1600,
     h: 1000,
-    title: "Monolith Site",
-    cat: "Web Design",
+    title: "BULLFROG-X",
+    cat: "Ground mobility system",
     tall: false,
   },
   {
-    seed: "halcyon-p3",
+    seed: "vanguard-s3",
     w: 1200,
     h: 1500,
-    title: "Aurora Identity",
-    cat: "Branding",
+    title: "HALO-NET",
+    cat: "Domain awareness",
     tall: true,
   },
   {
-    seed: "halcyon-p4",
+    seed: "vanguard-s4",
     w: 1600,
     h: 1000,
-    title: "Momentum",
-    cat: "Motion",
+    title: "TITAN-7",
+    cat: "Command & control",
     tall: false,
   },
   {
-    seed: "halcyon-p5",
+    seed: "vanguard-s5",
     w: 1200,
     h: 1500,
-    title: "Vesper Product",
-    cat: "Development",
+    title: "GHOST-LINK",
+    cat: "Secure communications",
     tall: true,
   },
 ];
@@ -61,8 +61,8 @@ export default function Horizontal() {
     <section ref={ref} className="relative h-[360vh]">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div className="absolute top-12 left-0 z-10 w-full px-6 md:px-14">
-          <p className="font-sans text-[11px] tracking-[0.45em] text-gold uppercase">
-            [ 02 — Selected Work ]
+          <p className="font-mono text-[11px] tracking-[0.45em] text-amber uppercase">
+            [ 02 — Systems ]
           </p>
         </div>
 
@@ -73,10 +73,10 @@ export default function Horizontal() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: EASE }}
-              className="font-display text-5xl font-black tracking-tight text-bone uppercase md:text-8xl"
+              className="font-display text-6xl leading-[0.9] tracking-wide text-bone uppercase md:text-8xl"
             >
-              Projects
-              <span className="text-gradient-gold">.</span>
+              Platforms
+              <span className="text-amber">.</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 24 }}
@@ -85,11 +85,11 @@ export default function Horizontal() {
               transition={{ duration: 1, ease: EASE, delay: 0.15 }}
               className="mt-6 max-w-sm text-base leading-relaxed text-mute"
             >
-              A horizontal gallery — keep scrolling vertically, and the reel
-              slides sideways. Five frames, five disciplines.
+              Five classes of systems, one standard. Keep scrolling — the
+              arsenal moves sideways.
             </motion.p>
-            <p className="mt-8 font-sans text-[10px] tracking-[0.4em] text-faint uppercase">
-              ↓ Keep scrolling
+            <p className="mt-8 font-mono text-[10px] tracking-[0.4em] text-faint uppercase">
+              ↓ Continue scroll
             </p>
           </div>
 
@@ -101,10 +101,10 @@ export default function Horizontal() {
             <a
               href="#contact"
               data-hover
-              className="group flex size-36 items-center justify-center rounded-full border border-line transition-colors duration-500 hover:border-gold md:size-44"
+              className="group flex size-36 items-center justify-center rounded-full border border-line transition-colors duration-500 hover:border-amber md:size-44"
             >
-              <span className="text-center font-sans text-[11px] tracking-[0.3em] text-mute uppercase transition-colors group-hover:text-gold">
-                All work
+              <span className="text-center font-mono text-[10px] tracking-[0.3em] text-mute uppercase transition-colors group-hover:text-amber">
+                Full catalog
                 <br />
                 <span className="text-lg">→</span>
               </span>
@@ -148,28 +148,39 @@ function Panel({
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.9, ease: EASE, delay: index * 0.06 }}
       data-hover
-      className={`group relative w-[78vw] shrink-0 overflow-hidden rounded-xl sm:w-[55vw] md:w-[34vw] ${
+      className={`group relative h-[52vh] w-[78vw] shrink-0 overflow-hidden sm:w-[55vw] md:w-[34vw] ${
         tall ? "md:h-[62vh]" : "md:h-[46vh]"
-      } h-[52vh]`}
+      }`}
     >
       <motion.div style={{ scale }} className="absolute inset-0">
         <img
           src={`https://picsum.photos/seed/${seed}/${w}/${h}`}
           alt={title}
-          className="h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+          className="military-img h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
         />
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
+
+      <span className="absolute top-4 left-4 size-4 border-t-2 border-l-2 border-amber/80" />
+      <span className="absolute top-4 right-4 size-4 border-t-2 border-r-2 border-amber/80" />
+      <span className="absolute bottom-4 left-4 size-4 border-b-2 border-l-2 border-amber/80" />
+      <span className="absolute right-4 bottom-4 size-4 border-r-2 border-b-2 border-amber/80" />
+
       <figcaption className="absolute bottom-0 left-0 flex w-full items-end justify-between p-6">
         <div>
-          <p className="font-sans text-[10px] tracking-[0.35em] text-bone/60 uppercase">
-            {String(index + 1).padStart(2, "0")} — {cat}
+          <p className="font-mono text-[10px] tracking-[0.35em] text-bone/60 uppercase">
+            SYS-{String(index + 1).padStart(2, "0")} — {cat}
           </p>
-          <h3 className="mt-2 font-display text-2xl font-extrabold text-bone uppercase md:text-3xl">
+          <h3 className="mt-2 font-display text-4xl tracking-wide text-bone uppercase">
             {title}
           </h3>
+          <div className="mt-3 flex items-center gap-3 font-mono text-[9px] tracking-[0.3em] text-bone/50 uppercase">
+            <span className="text-amber">STATUS: DEPLOYED</span>
+            <span>·</span>
+            <span>MTBF 9,500H</span>
+          </div>
         </div>
-        <span className="flex size-11 items-center justify-center rounded-full border border-bone/25 text-bone opacity-0 backdrop-blur transition-all duration-500 group-hover:opacity-100 group-hover:border-gold group-hover:text-gold">
+        <span className="flex size-11 items-center justify-center rounded-full border border-bone/25 font-mono text-bone opacity-0 backdrop-blur transition-all duration-500 group-hover:opacity-100 group-hover:border-amber group-hover:text-amber">
           ↗
         </span>
       </figcaption>

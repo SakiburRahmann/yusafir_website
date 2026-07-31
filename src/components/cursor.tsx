@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 
 export default function Cursor() {
@@ -10,7 +10,6 @@ export default function Cursor() {
   const y = useSpring(-100, { stiffness: 700, damping: 40, mass: 0.4 });
   const ringX = useSpring(-100, { stiffness: 150, damping: 22, mass: 0.8 });
   const ringY = useSpring(-100, { stiffness: 150, damping: 22, mass: 0.8 });
-  const [down, setDown] = useState(false);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -24,41 +23,37 @@ export default function Cursor() {
     };
     const over = (e: MouseEvent) => {
       const t = e.target as HTMLElement;
-      setHovering(
-        !!t.closest("a, button, [data-hover], input, textarea")
-      );
+      setHovering(!!t.closest("a, button, [data-hover], input, textarea"));
     };
-    const downH = () => setDown(true);
-    const upH = () => setDown(false);
 
     window.addEventListener("mousemove", move, { passive: true });
     window.addEventListener("mouseover", over, { passive: true });
-    window.addEventListener("mousedown", downH);
-    window.addEventListener("mouseup", upH);
     return () => {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseover", over);
-      window.removeEventListener("mousedown", downH);
-      window.removeEventListener("mouseup", upH);
     };
   }, [x, y, ringX, ringY]);
 
   if (!enabled) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[180] hidden" aria-hidden>
+    <div className="pointer-events-none fixed inset-0 z-[180]" aria-hidden>
       <motion.div
-        className="absolute top-0 left-0 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold"
+        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2"
         style={{ x, y }}
-      />
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <line x1="7" y1="0" x2="7" y2="14" stroke="#e8a33d" strokeWidth="1.5" />
+          <line x1="0" y1="7" x2="14" y2="7" stroke="#e8a33d" strokeWidth="1.5" />
+        </svg>
+      </motion.div>
       <motion.div
-        className="absolute top-0 left-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold/50"
+        className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-amber/60"
         style={{ x: ringX, y: ringY }}
         animate={{
-          width: hovering ? 52 : 34,
-          height: hovering ? 52 : 34,
-          opacity: hovering ? 0.9 : 0.5,
-          scale: down ? 0.85 : 1,
+          width: hovering ? 48 : 30,
+          height: hovering ? 48 : 30,
+          opacity: hovering ? 0.9 : 0.45,
         }}
         transition={{ type: "spring", stiffness: 320, damping: 26 }}
       />
