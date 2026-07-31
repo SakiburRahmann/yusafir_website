@@ -1,8 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
 
 :root {
   --bg: #fafafa;
@@ -22,16 +18,16 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
   background: var(--bg);
   color: var(--fg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-poppins), 'Poppins', sans-serif; }
 
-.font-display { font-family: 'Poppins', sans-serif; }
+.font-display { font-family: var(--font-poppins), 'Poppins', sans-serif; }
 
 .bg-pattern {
   background-image:
@@ -73,11 +69,6 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
   width: 2px;
   background: var(--line);
   transform: translateX(-50%);
-}
-@media (min-width: 768px) {
-  .step-connector {
-    display: block;
-  }
 }
 .step-connector-active {
   background: linear-gradient(to bottom, var(--green), #6ee7b7);
@@ -126,26 +117,13 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
   padding: 0.75rem 1.5rem;
   transition: all 0.2s ease;
 }
-.btn-primary {
-  background: var(--green);
-  color: #fff;
-}
+.btn-primary { background: var(--green); color: #fff; }
 .btn-primary:hover { background: var(--green-dark); }
-.btn-secondary {
-  background: #fff;
-  color: var(--green);
-  border: 1px solid #a7f3d0;
-}
+.btn-secondary { background: #fff; color: var(--green); border: 1px solid #a7f3d0; }
 .btn-secondary:hover { background: #ecfdf5; }
-.btn-outline {
-  border: 2px solid var(--green);
-  color: var(--green);
-}
+.btn-outline { border: 2px solid var(--green); color: var(--green); }
 .btn-outline:hover { background: #f0fdf4; }
-.btn-red {
-  background: var(--red);
-  color: #fff;
-}
+.btn-red { background: var(--red); color: #fff; }
 .btn-red:hover { background: var(--red-dark); }
 
 .card {
