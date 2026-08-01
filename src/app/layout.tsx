@@ -25,27 +25,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Shadinota — Join the Bangladesh Armed Forces',
+  title: 'Agaami — AI ISSB Preparation for Bangladesh',
   description:
-    'Bangladesh Army, Navy and Air Force. One country. One duty. Your call to serve begins here — recruitment, eligibility, and the road to your commission.',
+    'Practice every stage of the ISSB selection — psychological tests, group tasks, and interviews — and get evaluated by AI. Built for Bangladesh. Train like you are already there.',
   keywords: [
-    'Bangladesh Army recruitment',
-    'Bangladesh Navy recruitment',
-    'Bangladesh Air Force recruitment',
-    'BMA long course',
-    'join Bangladesh armed forces',
+    'ISSB preparation',
+    'ISSB practice platform',
+    'Bangladesh ISSB',
+    'ISSB AI',
+    'word association test',
+    'sentence completion test',
+    'ISSB interview practice',
   ],
   openGraph: {
     type: 'website',
     locale: 'en_BD',
-    title: 'Shadinota — Join the Bangladesh Armed Forces',
+    title: 'Agaami — AI ISSB Preparation',
     description:
-      'Bangladesh Army, Navy and Air Force. One country. One duty. Your call to serve begins here.',
+      'Practice every stage of ISSB selection and get evaluated by AI. Built for Bangladesh.',
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#07130e',
+  themeColor: '#0a0e0b',
   width: 'device-width',
   initialScale: 1,
 };

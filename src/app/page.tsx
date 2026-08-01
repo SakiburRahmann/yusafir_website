@@ -1,16 +1,15 @@
 import SmoothScroll from '@/components/smooth-scroll';
 import Loader from '@/components/loader';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
+import Navbar from '@/components/navbar';
+import Hero from '@/components/hero';
 import Marquee from '@/components/marquee';
-import Services from '@/components/services';
-import Eligibility from '@/components/eligibility';
-import Manifesto from '@/components/manifesto';
-import Process from '@/components/process';
-import Voices from '@/components/voices';
-import Gallery from '@/components/gallery';
-import FAQ from '@/components/FAQ';
-import Footer from '@/components/Footer';
+import Issb from '@/components/issb';
+import Practice from '@/components/practice';
+import How from '@/components/how';
+import Eval from '@/components/eval';
+import Showcase from '@/components/showcase';
+import FAQ from '@/components/faq';
+import Footer from '@/components/footer';
 
 export default function Home() {
   return (
@@ -20,12 +19,11 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
-        <Services />
-        <Eligibility />
-        <Manifesto />
-        <Process />
-        <Voices />
-        <Gallery />
+        <Issb />
+        <Practice />
+        <How />
+        <Eval />
+        <Showcase />
         <FAQ />
       </main>
       <Footer />

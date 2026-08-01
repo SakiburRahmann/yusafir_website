@@ -1,12 +1,12 @@
 const items = [
-  'BMA Long Course 2026',
-  'Bangladesh Navy — Officer Entry',
-  'Bangladesh Air Force — GD(P) Pilot',
-  'Soldier & Sailor General Duty',
-  'Women in Combat Arms',
-  'ISSB Preparation Guide',
-  'Mistiri & Tradesmen Entry',
-  'Medical Standards — Category A',
+  'Word Association Test',
+  'Sentence Completion Test',
+  'Group Planning Exercise',
+  'Group Discussion',
+  'Interview Practice',
+  'Leadership Assessment',
+  'Self-description',
+  'Physical Prep Guide',
 ];
 
 export default function Marquee() {
