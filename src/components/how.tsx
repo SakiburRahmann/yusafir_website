@@ -89,7 +89,7 @@ export default function How() {
                     }`}
                   >
                     <div
-                      className={`mb-3 flex items-center gap-4 ${
+                      className={`mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 ${
                         left ? 'md:justify-end' : ''
                       }`}
                     >
