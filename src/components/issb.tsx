@@ -107,7 +107,7 @@ export default function Issb() {
           <div className="order-1 lg:order-2">
             <div className="relative aspect-[4/5] overflow-hidden">
               <motion.img
-                src="https://picsum.photos/seed/agaami-issb/1000/1250"
+                src="https://picsum.photos/seed/agami-issb/1000/1250"
                 alt="ISSB preparation"
                 className="military-img absolute inset-0 h-full w-full object-cover"
               />

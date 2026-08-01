@@ -25,7 +25,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Agaami — AI ISSB Preparation for Bangladesh',
+  title: 'ISSB Training School — AI ISSB Preparation for Bangladesh',
   description:
     'Practice every stage of the ISSB selection — psychological tests, group tasks, and interviews — and get evaluated by AI. Built for Bangladesh. Train like you are already there.',
   keywords: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_BD',
-    title: 'Agaami — AI ISSB Preparation',
+    title: 'ISSB Training School — AI ISSB Preparation',
     description:
       'Practice every stage of ISSB selection and get evaluated by AI. Built for Bangladesh.',
   },

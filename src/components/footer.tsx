@@ -82,8 +82,8 @@ export default function Footer() {
               <span className="grid size-9 place-items-center rounded-full border border-gold">
                 <span className="size-2.5 rotate-45 bg-gold" />
               </span>
-              <span className="font-display text-lg font-extrabold tracking-[0.15em] text-bone uppercase">
-                Agaami
+              <span className="font-display text-sm font-extrabold tracking-[0.12em] text-bone uppercase sm:text-lg sm:tracking-[0.15em]">
+                ISSB Training School
               </span>
             </div>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-mute">
@@ -118,7 +118,7 @@ export default function Footer() {
       <div className="relative border-t border-bone/10">
         <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-4 px-5 py-6 md:px-10">
           <p className="font-mono text-[10px] tracking-[0.3em] text-faint uppercase">
-            © {new Date().getFullYear()} Agaami — independent practice platform
+            © {new Date().getFullYear()} ISSB Training School — independent practice platform
           </p>
           <p className="font-mono text-[10px] tracking-[0.3em] text-faint uppercase">
             Not affiliated with the Bangladesh Armed Forces

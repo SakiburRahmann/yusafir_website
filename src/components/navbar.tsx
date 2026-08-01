@@ -7,7 +7,7 @@ const links = [
   ['The ISSB', '#issb'],
   ['Practice', '#practice'],
   ['How it works', '#how'],
-  ['Why Agaami', '#why'],
+  ['Evaluation', '#why'],
   ['FAQ', '#faq'],
 ];
 
@@ -36,8 +36,8 @@ export default function Navbar() {
           <span className="grid size-9 place-items-center rounded-full border border-gold">
             <span className="size-2.5 rotate-45 bg-gold" />
           </span>
-          <span className="font-display text-lg font-extrabold tracking-[0.15em] text-bone uppercase">
-            Agaami
+          <span className="font-display text-sm font-extrabold tracking-[0.12em] text-bone uppercase sm:text-lg sm:tracking-[0.15em]">
+            ISSB Training School
           </span>
         </a>
 

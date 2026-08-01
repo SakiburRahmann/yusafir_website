@@ -32,26 +32,26 @@ export default function Loader() {
           className="fixed inset-0 z-[100] flex flex-col justify-between bg-ink px-6 py-6 md:px-14 md:py-10"
         >
           <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.4em] text-faint uppercase">
-            <span>Agaami</span>
+            <span>ISSB Training School</span>
             <span>ISSB · AI Platform</span>
           </div>
 
-          <div className="flex items-end justify-between gap-8">
+          <div className="flex flex-col-reverse items-start justify-between gap-10 md:flex-row md:items-end">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
               className="space-y-3"
             >
-              <p className="font-display text-4xl font-black tracking-tight text-bone uppercase md:text-6xl">
-                Agaami
+              <p className="font-display text-3xl font-black tracking-tight text-bone uppercase md:text-6xl">
+                ISSB Training School
               </p>
-              <p className="font-mono text-[11px] tracking-[0.35em] text-gold uppercase">
+              <p className="font-mono text-[10px] tracking-[0.35em] text-gold uppercase md:text-[11px]">
                 Preparing. Evaluating. Improving.
               </p>
             </motion.div>
 
-            <div className="flex flex-col items-end gap-2">
+            <div className="flex flex-col items-start gap-2 md:items-end">
               <span className="font-display text-7xl font-black tabular-nums text-bone md:text-8xl">
                 {count}
                 <span className="text-gold">%</span>
