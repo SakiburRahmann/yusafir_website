@@ -30,6 +30,10 @@ const faqs = [
     q: 'What does it cost?',
     a: 'The practice tracks are free to use. Nothing about this platform should be a barrier between you and the board.',
   },
+  {
+    q: 'Are you affiliated with the ISSB?',
+    a: 'No. ISSB Training School is an independent, unofficial practice platform. We are not affiliated with, endorsed by, or connected to the Inter Services Selection Board, the Bangladesh Armed Forces, or any government agency. Nothing here is official guidance, and no result here guarantees selection at the real board.',
+  },
 ];
 
 export default function FAQ() {

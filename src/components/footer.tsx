@@ -116,12 +116,24 @@ export default function Footer() {
       </div>
 
       <div className="relative border-t border-bone/10">
+        <div className="mx-auto max-w-[1500px] px-5 py-8 md:px-10">
+          <p className="mx-auto max-w-3xl border border-gold/30 bg-gold/5 p-4 text-center font-mono text-[10px] leading-relaxed tracking-[0.15em] text-bone/60 uppercase">
+            Disclaimer — this is an independent practice platform. Not
+            affiliated with, endorsed by, or connected to the Inter Services
+            Selection Board (ISSB), the Bangladesh Armed Forces, or any
+            government agency. All practice materials and AI evaluations are
+            unofficial and do not guarantee selection.
+          </p>
+        </div>
+      </div>
+
+      <div className="relative border-t border-bone/10">
         <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-4 px-5 py-6 md:px-10">
           <p className="font-mono text-[10px] tracking-[0.3em] text-faint uppercase">
             © {new Date().getFullYear()} ISSB Training School — independent practice platform
           </p>
           <p className="font-mono text-[10px] tracking-[0.3em] text-faint uppercase">
-            Not affiliated with the Bangladesh Armed Forces
+            Not affiliated with the ISSB or Bangladesh Armed Forces
           </p>
         </div>
       </div>
